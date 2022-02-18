@@ -4,17 +4,19 @@ on:
   push:
     branches:
       - main  # Set a branch to deploy
-  pull_request:
+      - reed-schimmel
+  # pull_request:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
         with:
-          submodules: recursive  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 1    # Fetch all history for .GitInfo and .Lastmod
+          ref: reed-schimmel
+          # submodules: recursive  # Fetch Hugo themes (true OR recursive)
+          # fetch-depth: 1    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Get theme
         run: git submodule update --init --recursive
@@ -29,11 +31,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --gc --verbose
+        run: hugo --gc --verbose --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        # if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
