@@ -1,0 +1,3 @@
+baseURL = 'https://reed-schimmel.github.io'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
