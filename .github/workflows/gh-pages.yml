@@ -3,8 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
-      - reed-schimmel
+      - main  # Set a branch to deploy- reed-schimmel
   # pull_request:
 
 jobs:
@@ -14,7 +13,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
         with:
-          ref: reed-schimmel
+          ref: main
           # submodules: recursive  # Fetch Hugo themes (true OR recursive)
           # fetch-depth: 1    # Fetch all history for .GitInfo and .Lastmod
 
